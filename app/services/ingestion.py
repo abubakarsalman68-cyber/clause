@@ -1,11 +1,13 @@
+from app.core.config import Settings, get_embeddings, get_qdrant_client, get_settings
 from pathlib import Path
 from langchain_core.documents import Document
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_qdrant import QdrantVectorStore
-from core.config import get_settings, get_embeddings, get_qdrant_client
-from qdrant_client.models import Distance, VectorParams
 
+from app.core.config import Settings, get_embeddings, get_qdrant_client
+
+from qdrant_client.models import Distance, VectorParams
 def load(path: Path) -> list[Document]:
     return PyPDFLoader(file_path=path).load()
 
@@ -43,3 +45,7 @@ def ingest() -> int:
     vector_store.add_documents(documents=chunks)
 
     return len(chunks)
+
+if __name__ == "__main__":
+    count = ingest()
+    print(ingest(), "chunks indexed")

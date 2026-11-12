@@ -2,8 +2,7 @@ from langchain.chat_models import init_chat_model
 from langchain_qdrant import QdrantVectorStore
 from pydantic import BaseModel  # Data  Validtion, Data Models
 
- from core.config import get_settings, get_embeddings, get_qdrant_client
-
+from app.core.config import get_settings, get_embeddings, get_qdrant_client
 
 class Source():
   source: str
